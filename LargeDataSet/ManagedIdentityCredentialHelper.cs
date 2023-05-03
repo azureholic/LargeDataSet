@@ -9,19 +9,21 @@ namespace LargeDataSet
         {
             //set option to use the local identity in development
             var credentialOptions = new DefaultAzureCredentialOptions();
+
+            credentialOptions.ExcludeEnvironmentCredential = true;
+            credentialOptions.ExcludeInteractiveBrowserCredential = true;
+            credentialOptions.ExcludeManagedIdentityCredential = true;
+            credentialOptions.ExcludeSharedTokenCacheCredential = true;
+            credentialOptions.ExcludeVisualStudioCodeCredential = true;
+            credentialOptions.ExcludeVisualStudioCredential = true;
+            credentialOptions.ExcludeAzureCliCredential = true;
+
+
             if (environment.IsDevelopment())
             {
                 //exclude all options except AzureCliCredential - my preferred option
                 //this will speed up the credential acquisition process
-                credentialOptions.ExcludeEnvironmentCredential = true;
-                credentialOptions.ExcludeInteractiveBrowserCredential = true;
-                credentialOptions.ExcludeManagedIdentityCredential = true;
-                credentialOptions.ExcludeSharedTokenCacheCredential = true;
-                credentialOptions.ExcludeVisualStudioCodeCredential = true;
-                credentialOptions.ExcludeVisualStudioCredential = true;
-
                 credentialOptions.ExcludeAzureCliCredential = false;
-
             }
             else
             {
